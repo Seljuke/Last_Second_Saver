@@ -3,7 +3,7 @@ from pywinauto.application import Application, AppNotConnected, ProcessNotFoundE
 import time
 from PIL import Image
 import os
- 
+
 EnumWindows = ctypes.windll.user32.EnumWindows
 EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int))
 GetWindowText = ctypes.windll.user32.GetWindowTextW
@@ -14,6 +14,7 @@ IsWindowVisible = ctypes.windll.user32.IsWindowVisible
 titles = []
 def foreach_window(hwnd, lParam):
     if IsWindowVisible(hwnd):
+        print(type(hwnd))
         length = GetWindowTextLength(hwnd)
         buff = ctypes.create_unicode_buffer(length + 1)
         GetWindowText(hwnd, buff, length + 1)
@@ -28,12 +29,4 @@ EnumWindows(EnumWindowsProc(foreach_window), 0)
  
 
 print(titles)
-connections = []
-for title in titles:
-    if(title[1] != ''):
-        print(title[1])
-        connections.append(Application().Connect(process=title[0]))
-        dlgs = connections[-1].windows()
-        print(dlgs)
-        
 
