@@ -32,7 +32,7 @@ for hndl in hndls:
                 img.save("./Saves/"+name+".jpg")
                 app.minimize()
             except:
-                print("ERROR --- "+print(str(pywinauto.handleprops.text(hndl)) + " - " + str(pywinauto.handleprops.processid(hndl))))
+                print("ERROR --- "+(str(pywinauto.handleprops.text(hndl)) + " - " + str(pywinauto.handleprops.processid(hndl))))
                 continue
         
     

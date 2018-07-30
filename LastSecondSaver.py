@@ -1,32 +1,42 @@
-import ctypes
-from pywinauto.application import Application, AppNotConnected, ProcessNotFoundError
+from pywinauto import handleprops, findwindows
+from pywinauto.controls import hwndwrapper
+from desktopmagic.screengrab_win32 import getRectAsImage
 import time
-from PIL import Image
-import os
 
-EnumWindows = ctypes.windll.user32.EnumWindows
-EnumWindowsProc = ctypes.WINFUNCTYPE(ctypes.c_bool, ctypes.POINTER(ctypes.c_int), ctypes.POINTER(ctypes.c_int))
-GetWindowText = ctypes.windll.user32.GetWindowTextW
-GetWindowTextLength = ctypes.windll.user32.GetWindowTextLengthW
-GetWindowThreadProcessId = ctypes.windll.user32.GetWindowThreadProcessId
-IsWindowVisible = ctypes.windll.user32.IsWindowVisible
- 
-titles = []
-def foreach_window(hwnd, lParam):
-    if IsWindowVisible(hwnd):
-        print(type(hwnd))
-        length = GetWindowTextLength(hwnd)
-        buff = ctypes.create_unicode_buffer(length + 1)
-        GetWindowText(hwnd, buff, length + 1)
-        proc_id = ctypes.c_int()
-        GetWindowThreadProcessId(hwnd, ctypes.byref(proc_id))
-        titles.append((proc_id.value, buff.value))
-        length = None
-        buff = None
-        proc_id = None
-    return True
-EnumWindows(EnumWindowsProc(foreach_window), 0)
- 
-
-print(titles)
-
+start = time.time()
+hndls = findwindows.find_windows()
+for hndl in hndls:
+    if (handleprops.exstyle(hndl) == 256 or 
+        handleprops.exstyle(hndl) == 786688 or 
+        handleprops.exstyle(hndl) == 0):
+        print(str(handleprops.text(hndl)) + " - " + str(handleprops.processid(hndl)))
+        rect = None
+        rect = handleprops.rectangle(hndl)
+        box = None
+        box = (rect.left, rect.top, rect.right, rect.bottom)
+        # app.maximize()
+        if(str(handleprops.text(hndl)).strip()== ""):
+            continue
+        else:
+            try:
+                app = None
+                app = hwndwrapper.HwndWrapper(hndl)
+                app.set_focus()
+                app.maximize()
+                img = None
+                img = getRectAsImage(box)
+                name = None
+                name = str(handleprops.text(hndl)).strip()
+                name = name.replace("/","_")
+                name = name.replace(":","-")
+                name = name.replace(".","-")
+                img.save("./Saves/"+name+".jpg")
+                app.minimize()
+            except:
+                print("ERROR --- "+(str(handleprops.text(hndl)) + " - " + str(handleprops.processid(hndl))))
+                continue
+time.sleep(1)
+stop = time.time()
+print("TIME: " + str(stop-start))
+        
+    
