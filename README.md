@@ -1,5 +1,5 @@
 # Last_Second_Saver
-Do you in a hurry to go AFK. Just hit the **"Lctrl+L"** and when you came back check the `C:\Users\user\LastSecondSave` directory to remember what were you doing.
+Do you in a hurry to go AFK. Simply hit the **"Lctrl+L"** and when you came back check the `C:\Users\user\LastSecondSave` directory to remember what were you doing.
 
 Saves the screenshots of opened or minimized windows into `C:\Users\user\LastSecondSave` as an one image file.
 
