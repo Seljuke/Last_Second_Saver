@@ -9,7 +9,7 @@ Saves the screenshots of opened or minimized windows into `C:\Users\user\LastSec
 
 ## Usage
 
-Install via installer **LastSecondSaver-1.0-amd64.msi** under `dis\` folder
+Install via installer **LastSecondSaver-1.0-amd64.msi** under [Releases](https://github.com/Seljuke/Last_Second_Saver/releases)
 
 Or build with [cx_Freeze](https://pypi.org/project/cx_Freeze/):
   
