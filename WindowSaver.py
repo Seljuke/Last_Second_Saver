@@ -93,11 +93,11 @@ def Last_Second_Save():
         name = ("LastSecondSave-" + str(now.year) + "-" + str(now.month) + "-" + str(now.day)
             + "-" + str(now.hour) + "-" + str(now.minute) )
         homeDir = os.path.expanduser("~")
-        if os.path.isdir(homeDir+"\\LastSeconSave"):
-            result.save(homeDir+"\\LastSeconSave\\"+name+".jpg")
+        if os.path.isdir(homeDir+"\\LastSecondSave"):
+            result.save(homeDir+"\\LastSecondSave\\"+name+".jpg")
         else:
-            os.mkdir(homeDir+"\\LastSeconSave")
-            result.save(homeDir+"\\LastSeconSave\\"+name+".jpg")
+            os.mkdir(homeDir+"\\LastSecondSave")
+            result.save(homeDir+"\\LastSecondSave\\"+name+".jpg")
     #END IF#
     # stop = time.time()
     # print("TIME: " + str(stop-start))
