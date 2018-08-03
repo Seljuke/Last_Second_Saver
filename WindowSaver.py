@@ -58,19 +58,27 @@ def Last_Second_Save():
             if len(imgs) == 1:
                 matrix_col, matrix_row = (1, 1)
             else:
-                matrix_col, matrix_row = (int(sqrt)+ 1, int(sqrt))
+                matrix_col, matrix_row = (int(sqrt), int(sqrt))
+                addition = [0]
+                while (matrix_col*matrix_row) < len(imgs):
+                    if(addition[0] == 0):
+                        matrix_col += 1
+                        addition[0] = 1
+                    else:
+                        matrix_row += 1
+                        addition[0] = 0
         else:
             matrix_col, matrix_row = (int(sqrt), int(sqrt))
 
-        print("MATRIX: " + str(matrix_row) + "x" + str(matrix_col))
+        # print("MATRIX: " + str(matrix_row) + "x" + str(matrix_col))
         finalRes_width = 960 * matrix_col
         finalRes_height = 540 * matrix_row
         result = Image.new("RGB", (finalRes_width, finalRes_height))
-        print("RESULT IMAGE SIZE: " + str(result.size))
+        # print("RESULT IMAGE SIZE: " + str(result.size))
         perImg_width = 960
         perImg_height = 540
         lst_counter = 0
-        print("NUMBER OF IMGS: " + str(len(imgs)))
+        # print("NUMBER OF IMGS: " + str(len(imgs)))
         for col in range(matrix_col):
             for row in range(matrix_row):
                 if len(imgs) > lst_counter:
@@ -94,4 +102,4 @@ def Last_Second_Save():
     # stop = time.time()
     # print("TIME: " + str(stop-start))
         
-Last_Second_Save()
+# Last_Second_Save()

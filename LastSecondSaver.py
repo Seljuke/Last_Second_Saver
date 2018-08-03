@@ -13,7 +13,7 @@ import os
 import WindowSaver
 import sys
 import inspect
-import pyHook
+import keyboard
 import ctypes
 import win32api
 import win32con
@@ -222,9 +222,9 @@ def non_string_iterable(obj):
 def keyhooker():
     def OnKeyboardEvent(event):
         # print("Key: ", event.Key)
-        if state[0] == 0 and event.Key == "Lcontrol":
+        if event.name == "ctrl":
             state[0] = 1
-        elif state[0] == 1 and event.Key == "L":
+        elif state[0] == 1 and event.name == "l":
             state[0] = 0
             WindowSaver.Last_Second_Save()
             # print("SCREENSHOT!")
@@ -235,19 +235,12 @@ def keyhooker():
         return True
     
     state = [0]
-    # create a hook manager
-    hm = pyHook.HookManager()
-    # watch for all mouse events
-    hm.KeyDown = OnKeyboardEvent
-    # set the hook
-    hm.HookKeyboard()
-    # wait forever
-    win32gui.PumpMessages()
+    keyboard.on_press(OnKeyboardEvent)
+    keyboard.wait()
 
 # Minimal self test. You'll need a bunch of ICO files in the current working
 # directory in order for this to work...
 if __name__ == '__main__':
-    import itertools, glob
     import multiprocessing
     
     multiprocessing.freeze_support()
