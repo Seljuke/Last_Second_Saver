@@ -11,9 +11,9 @@ Saves the screenshots of opened or minimized windows into `C:\Users\user\LastSec
 
 Install via installer **LastSecondSaver-1.0-amd64.msi** under [Releases](https://github.com/Seljuke/Last_Second_Saver/releases)
 
-Or build with [cx_Freeze](https://pypi.org/project/cx_Freeze/):
-  
-  `python setup.py build_exe`
+Or build with [cx_Freeze](https://pypi.org/project/cx_Freeze/)::
+
+    $ python setup.py build_exe
 
 Or copy the `build\exe.win-amd64-3.6` folder somewhere.
 
