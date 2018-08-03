@@ -18,6 +18,6 @@ Or copy the `build\exe.win-amd64-3.6` folder somewhere.
 
 ## Examples
 
-![System Icon](https://prnt.sc/keenry)
-![Example](https://pypi.python.org/pypi/keyboard/)
+![System Tray Icon](https://user-images.githubusercontent.com/16338294/43664403-866700d4-9775-11e8-8ddb-44e57596124a.png)
+![Example](https://user-images.githubusercontent.com/16338294/43664425-989516e2-9775-11e8-8ba3-392051744443.jpg)
 
