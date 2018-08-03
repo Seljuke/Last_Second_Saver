@@ -12,7 +12,7 @@ Saves the screenshots of opened or minimized windows into `C:\Users\SELCUK\LastS
 
 Or build with [cx_Freeze](https://pypi.org/project/cx_Freeze/):
   
-  python setup.py build_exe
+  `python setup.py build_exe`
 
 Or copy the `build\exe.win-amd64-3.6` folder somewhere.
 
