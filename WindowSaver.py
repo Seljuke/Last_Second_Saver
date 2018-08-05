@@ -20,14 +20,10 @@ def Last_Second_Save():
             handleprops.exstyle(hndl) == 65792 or
             handleprops.exstyle(hndl) == 2097408 or
 			handleprops.exstyle(hndl) == 262416 or
+            handleprops.exstyle(hndl) == 327937 or
             handleprops.exstyle(hndl) == 0) 
 			and not (handleprops.text(hndl) == None or handleprops.text(hndl) == "")):
             print(str(handleprops.text(hndl)) + " - " + str(handleprops.exstyle(hndl)))
-            rect = None
-            rect = handleprops.rectangle(hndl)
-            box = None
-            box = (rect.left, rect.top, rect.right, rect.bottom)
-            # app.maximize()
             if(str(handleprops.text(hndl)).strip()== ""):
                 continue
             else:
@@ -35,15 +31,20 @@ def Last_Second_Save():
                     app = None
                     app = hwndwrapper.HwndWrapper(hndl)
                     # app.set_focus()
-                    # win32functions.WaitGuiThreadIdle(hndl)
+                    win32functions.WaitGuiThreadIdle(hndl)
                     if app.is_minimized():
                         app.restore()
+                        time.sleep(0.25)
                     win32functions.WaitGuiThreadIdle(hndl)
                     app.set_focus()
                     win32functions.WaitGuiThreadIdle(hndl)
-                    # time.sleep(0.1)
+                    rect = None
+                    rect = handleprops.rectangle(hndl)
+                    win32functions.WaitGuiThreadIdle(hndl)
+                    box = None
+                    box = (rect.left, rect.top, rect.right, rect.bottom)
                     img = None
-                    img = getRectAsImage(box)
+                    img = getRectAsImage(box)   
                     imgs.append(img)
                     # time.sleep(0.1)
                 except:
@@ -102,4 +103,4 @@ def Last_Second_Save():
     # stop = time.time()
     # print("TIME: " + str(stop-start))
         
-# Last_Second_Save()
+Last_Second_Save()
